@@ -3,6 +3,8 @@ import { Formik } from 'formik';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, ViewStyle, TextInputProps, Touchable, TouchableOpacity } from 'react-native';
 import { Octicons, Ionicons } from '@expo/vector-icons';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigation/RootStack';
 import {
   StyledContainer,
   InnerContainer,
@@ -27,10 +29,19 @@ import {
 
 const { brand, darkLight } = Colors;
 
-const Login: React.FC = () => {
+//keyboard avoidingwrapper
+
+import KeyboardAvoidingWrapper from './../components/KeyboardAvoidingWrapper';
+import SignUp from './SignUp';
+type LoginScreenNavigationProp = NavigationProp<RootStackParamList, 'Login'>;
+
+
+const Login: React.FC = ({}) => {
   const [hidePassword, setHidePassword] = useState(true);
+  const navigation = useNavigation<LoginScreenNavigationProp>();
 
   return (
+  <KeyboardAvoidingWrapper>
     <StyledContainer>
       <StatusBar style="dark" />
       <InnerContainer>
@@ -42,6 +53,7 @@ const Login: React.FC = () => {
           initialValues={{ email: '', password: '' }}
           onSubmit={(values) => {
             console.log(values);
+            // navigation.navigate('Welcome'); 
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -78,7 +90,7 @@ const Login: React.FC = () => {
                 <ExtraText>
                   Dont't have an account yet?
                 </ExtraText>
-                <TextLink>
+                <TextLink onPress={() => navigation.navigate("SignUp")}>
                   <TextLinkContent>SignUp</TextLinkContent>
                 </TextLink>
               </ExtraView>
@@ -87,6 +99,7 @@ const Login: React.FC = () => {
         </Formik>
       </InnerContainer>
     </StyledContainer>
+     </KeyboardAvoidingWrapper>
   );
 };
 
