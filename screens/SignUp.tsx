@@ -50,7 +50,7 @@ const SignUp: React.FC = () => {
                 initialValues={{ fullName: '', email: '', password: '', confirmPassword: '' }}
                 onSubmit={(values) => {
                   console.log(values);
-                  // navigation.navigate('Welcome');
+                  navigation.navigate('CreateEvent');
                 }}
               >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (

@@ -53,7 +53,7 @@ const Login: React.FC = ({}) => {
           initialValues={{ email: '', password: '' }}
           onSubmit={(values) => {
             console.log(values);
-            // navigation.navigate('Welcome'); 
+            navigation.navigate('CreateEvent'); 
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
